@@ -16,7 +16,7 @@ def get_unique_job_types(path):
 
 
 def filter_by_job_type(jobs, job_type):
-    return [job for job in jobs if job['job_type'] == job_type]
+    return [job for job in jobs if job["job_type"] == job_type]
 
 
 def get_unique_industries(path):
@@ -32,21 +32,7 @@ def get_unique_industries(path):
 
 
 def filter_by_industry(jobs, industry):
-    return [job for job in jobs if job['industry'] == industry]
-    """Filters a list of jobs by industry
-
-    Parameters
-    ----------
-    jobs : list
-        List of jobs to be filtered
-    industry : str
-        Industry for the list filter
-
-    Returns
-    -------
-    list
-        List of jobs with provided industry
-    """
+    return [job for job in jobs if job["industry"] == industry]
 
 
 def get_max_salary(path):
@@ -65,16 +51,17 @@ def get_max_salary(path):
 
 def get_min_salary(path):
     data = src.jobs.read(path)
-    lowest_salary = 'not_initialized'
+    lowest_salary = "not_initialized"
     for salary in data:
         try:
             possible_lowest_salary = int(salary["min_salary"])
         except Exception:
             continue
         else:
-            if lowest_salary == 'not_initialized':
-                lowest_salary = possible_lowest_salary
-            if possible_lowest_salary < lowest_salary:
+            if (
+                lowest_salary == "not_initialized"
+                or possible_lowest_salary < lowest_salary
+            ):
                 lowest_salary = possible_lowest_salary
     return lowest_salary
 
