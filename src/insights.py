@@ -1,8 +1,6 @@
 import src.jobs
 
-# "src/jobs.csv"
-
-
+# to run this file uncomment the line below and comment the line above
 # import jobs
 
 
@@ -89,18 +87,23 @@ def matches_salary_range(job, salary):
 
 
 def filter_by_salary_range(jobs, salary):
-    """Filters a list of jobs by salary range
+    filter_matches = []
+    for job in jobs:
+        try:
+            salary_range_matched = matches_salary_range(job, salary)
+        except Exception:
+            continue
+        else:
+            if salary_range_matched:
+                filter_matches.append(job)
+    return filter_matches
 
-    Parameters
-    ----------
-    jobs : list
-        The jobs to be filtered
-    salary : int
-        The salary to be used as filter
 
-    Returns
-    -------
-    list
-        Jobs whose salary range contains `salary`
-    """
-    return []
+filter_by_salary_range([
+        {"max_salary": 0, "min_salary": 10},
+        {"max_salary": 10, "min_salary": 100},
+        {"max_salary": 10000, "min_salary": 200},
+        {"max_salary": 15000, "min_salary": 0},
+        {"max_salary": 1500, "min_salary": 0},
+        {"max_salary": -1, "min_salary": 10},
+    ], 0)
