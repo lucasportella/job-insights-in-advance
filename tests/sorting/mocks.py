@@ -2,6 +2,10 @@ from datetime import date
 
 
 def sort_by_any_criteria(jobs, criteria):
+    # LINE ADDED BY ME, IT SEEMS TO BE MISSING, THIS FUNC IS NOT A REQUIREMENT FOR TRYBE PROJECT
+    if criteria not in ['max_salary', 'min_salary', 'date_posted']:
+        raise ValueError
+    # LINE ADDED BY STUDENT
 
     valid_jobs = []
     invalid_jobs = []
